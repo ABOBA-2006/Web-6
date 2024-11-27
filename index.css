@@ -1,0 +1,287 @@
+@import url("common_properties.css");
+
+
+
+body{
+	 height: 100vh;
+}
+
+div{
+	display: flex;
+	border-width: 0;
+	border-style: solid;
+	border-color: black;
+}
+
+
+
+.header{
+	display: flex;
+	flex-direction: row;
+	justify-content: unset;
+	height: 25vh;
+	width:100vw;
+	background: lightblue;
+	border-width: 1px;
+	gap:54vw;
+}
+
+.header__text{
+	width: 17vw;
+	margin-left:4vw;
+}
+
+
+.content{
+	flex-direction: row;
+}
+
+.content-left{
+	width: 75vw;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.content-left__small-blocks{
+	flex-direction: column;
+}
+
+.content-left__small-blocks__block-1{
+	height: 25vh;
+	width:25vw;
+	background: lightcyan;
+	border-width: 0px 1px 1px 1px;
+}
+
+.content-left__small-blocks__block-2{
+	height: 25vh;
+	width:25vw;
+	background: lavender;
+	border-width: 0px 1px 0px 1px;
+}
+
+.content-left__wide-block{
+	display: flex; 
+  	flex-direction: column;
+	height: 50vh;
+	width:50vw;
+}
+
+.content-left__wide-block__photo{
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.content-left__wide-block__photo-map{
+	margin-top:5%;
+	width:20vw;
+	border-radius: 1vw;
+}
+
+.content-left__footer{
+	height: 25vh;
+	width:75vw;
+	background: #FAADC2;
+	border-width: 1px 0px 1px 1px;
+	justify-content: unset;
+	position: relative;
+}
+
+.content-left__footer__title{
+	position: absolute;
+	top:0;
+	left:5vw;
+}
+
+.content-left__footer__text{
+	margin-left: 55vw;
+}
+
+.content-right{
+	height: 75vh;
+	width:25vw;
+	background: lightsalmon;
+	border-width: 0px 1px 1px 1px;
+}
+
+.content-right-invisible{
+	display: none;
+	background: lightsalmon;
+	border-width: 1px;
+}
+
+#wide_block div{
+	flex-direction: column;
+}
+
+#formAccordion{
+	background: white;
+	position: fixed;
+	display: none; 
+  	flex-direction: column;
+  	width: 40%;
+	height: 30vh;
+	top:35vh;
+	left:30vw;
+	border-radius: calc(1vw + 1vh);
+	border: calc(0.3vh) solid black;
+	font-size: calc(1vw + 1vh);
+}
+
+#accordionForm{
+	margin-top: 2vh;
+	text-align: center;
+}
+
+#accordionForm textarea, input{
+	border-radius: 1vw;
+	border-width: 0.1vw;
+	height: 3vh;
+	resize: none;
+	vertical-align: middle;
+}
+
+#buttons{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#buttons button{
+	transition: 1s;
+	width: 40%;
+	font-size: 1.6vw;
+	border-radius: 1vw;
+	background: lightblue;
+}
+
+#buttons button:hover{
+	transition: 1s;
+	background: lightpink;
+}
+
+
+/*ACCORDION*/
+div.c{
+	position: relative;
+	width: 100%;
+	margin:2em;
+}
+.c input{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	opacity:0;
+	visibility: 0;
+}
+
+div.p{
+	max-height:0px;
+	text-align: center;
+	overflow: hidden;
+	transition:max-height 0.5s;
+	background-color: white;
+	box-shadow:0 0 10px 0 rgba(0, 0, 0, 0.2);
+	width: 70%;
+	border-radius: 0 0 1vw 1vw;
+}
+div.p p {
+	padding:2em;
+}
+
+.title{
+	width:80%;
+	height: 5vh;
+	border-radius: 1vw;
+	border-width: 0.1vw;
+}
+
+.c input:checked ~ div ~ div.p{
+  	max-height:5vh;
+}
+
+@media (max-width: 500px){
+	.header{
+		flex-direction: column;
+		gap: 0;
+		justify-content: center;
+		text-align: center;
+	}
+	.header__text{
+		margin-top: 2vh;
+		order: 2;
+		width: 70vw;
+		font-size: 3vw;
+	}
+	.header__title{
+		order: 1;
+		font-size: 7vw;
+	}
+
+
+	.content{
+		flex-direction: column;
+	}
+	.content-left{
+		flex-direction: column;
+		width: 100vw;
+	}
+	.content-left__wide-block{
+		order: 1;
+		width: 100vw;
+		border-width: 1px;
+	}
+	.content-left__wide-block__photo-map{
+		width: 60vw;
+	}
+	.content-left__small-blocks{
+		order: 2;
+	}
+	.content-left__small-blocks div{
+		width: 100vw;
+	}
+	.content-left__small-blocks p{
+		text-align: center;
+		font-size: 4vw;
+		width: 70vw;
+	}
+
+
+	.content-right{
+		display: none;
+	}
+	.content-right__photo{
+		box-shadow: rgba(207, 47, 116, 1) 0px 22px 70px 4px;	
+	}
+	.content-right-invisible{
+		display: flex;
+		order: 3;
+		width: 100vw;
+		height: 75vh;
+	}
+
+
+	.content-left__footer{
+		display: flex;
+		order: 4;
+		width: 100vw;
+		justify-content: center;
+		flex-direction: column;
+	}
+	.content-left__footer__text{
+		font-size: 4vw;
+		width: 70vw;
+		text-align: center;
+		margin-left: 0;
+		position: unset;
+		order: 1;
+	}
+	.content-left__footer__title{
+		font-size: 6vw;
+		margin-top: 2vh;
+		position: unset;
+		order: 2;
+		margin-left: 0;
+	}
+}

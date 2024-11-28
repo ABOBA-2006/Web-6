@@ -21,7 +21,7 @@ function backPressed(){
 const MAX_ACCORDIONS = 3;
 let current_blocks = 0;
 
-function savePressed(){
+async function savePressed(){
 	let titleText = document.getElementById("titleAccordion").value;
 	let contentText = document.getElementById("contentAccordion").value
 
@@ -36,17 +36,42 @@ function savePressed(){
 		return
 	}
 
-	current_blocks++;
-	let htmlBlock = `<div class="c">
-    <input type="checkbox">
-    <div class="title">
-      <h1>${titleText}</h1>
-    </div>
-    <div class="p">
-      <p>${contentText}</p>
-    </div>
-  </div>`;
+  const block = {
+    title: titleText,
+    content: contentText,
+  };
 
-  document.getElementById("wide_block").innerHTML += htmlBlock;
-  backPressed();
+  try {
+    const response = await fetch("save.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(block),
+    });
+
+    const result = await response.text();
+
+    if(response.ok){
+      current_blocks++;
+      let htmlBlock = `<div class="c">
+        <input type="checkbox">
+        <div class="title">
+          <h1>${titleText}</h1>
+        </div>
+        <div class="p">
+          <p>${contentText}</p>
+        </div>
+      </div>`;
+
+      document.getElementById("wide_block").innerHTML += htmlBlock;
+      backPressed();
+    }else{
+      alert("Error saving block: " + result);
+    }
+
+  }catch(error){
+    console.error("Error:", error);
+    alert("An error occurred while saving the block.");
+  }
 }

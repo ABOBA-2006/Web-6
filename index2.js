@@ -1,4 +1,5 @@
 function loadBlocks() {
+    console.log("GYAT");
     fetch('load.php') 
         .then(response => {
             if (!response.ok) {
@@ -10,6 +11,10 @@ function loadBlocks() {
             const container = document.getElementById('wide_block'); 
             container.innerHTML = ''; 
 
+            console.log(blocks);
+            if(blocks == null){
+                return;
+            }
             blocks.forEach(block => {
                 const htmlBlock = `
                     <div class="c">

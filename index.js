@@ -65,6 +65,7 @@ async function savePressed(){
       </div>`;
 
       document.getElementById("wide_block").innerHTML += htmlBlock;
+      console.log("Sending succeed");
       backPressed();
     }else{
       alert("Error saving block: " + result);
@@ -75,3 +76,11 @@ async function savePressed(){
     alert("An error occurred while saving the block.");
   }
 }
+
+window.onload = function() {
+  fetch('clear_json.php')
+      .then(response => response.text())
+      .catch(error => {
+          console.error('Error:', error);
+      });
+};

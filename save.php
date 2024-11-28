@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $blocks[] = ['title' => $title, 'content' => $content];
     file_put_contents($filename, json_encode($blocks, JSON_PRETTY_PRINT));
-
     echo "Block saved successfully.";
 } else {
     http_response_code(405);

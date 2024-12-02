@@ -1,5 +1,6 @@
+let previousBlocks = null; 
+
 function loadBlocks() {
-    console.log("GYAT");
     fetch('load.php') 
         .then(response => {
             if (!response.ok) {
@@ -9,12 +10,20 @@ function loadBlocks() {
         })
         .then(blocks => {
             const container = document.getElementById('wide_block'); 
-            container.innerHTML = ''; 
 
-            console.log(blocks);
             if(blocks == null){
+                container.innerHTML = ''; 
                 return;
             }
+
+            if (JSON.stringify(blocks) === JSON.stringify(previousBlocks)) {
+                console.log("No changes in blocks, skipping update.");
+                return;
+            }
+
+            previousBlocks = blocks;
+            container.innerHTML = ''; 
+
             blocks.forEach(block => {
                 const htmlBlock = `
                     <div class="c">
